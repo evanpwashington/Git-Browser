@@ -1,0 +1,18 @@
+<div id="header">
+	GitHub Browser
+	<span id="remainingReq">
+		Remaining Requests
+		<span class="badge badge-error">60</span>
+	</span>
+</div>
+<div id="content">
+	<div class="input-group">
+		<input class="form-control" placeholder="" type="text">
+		<span class="input-group-addon" id="reqSubmit">Request</span>
+	</div>
+	{{#each item in model}}
+		<div class="title">{{item.formattedTitle}}</div>
+		<div class="link">{{{item.formattedUrl}}}</div>
+	{{/each}}
+</div>
+{{outlet}}
