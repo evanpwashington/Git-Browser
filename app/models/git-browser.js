@@ -4,6 +4,7 @@ import DS from 'ember-data';
 var GitBrowser = DS.Model.extend({
 	title			: DS.attr('string'),
 	url				: DS.attr('string'),
+	urlIsObject		: DS.attr('boolean'),
 	
 	//replace spaces with underscore and initial caps for title
 	formattedTitle	: function(){

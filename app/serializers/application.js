@@ -8,7 +8,15 @@ var GitBrowser = DS.RESTSerializer.extend({
 			normData 	= {"gitBrowser": []};
 
 		Ember.$.each(type, function(key, value){
-			normData.gitBrowser.push({id: count, 'title': key, 'url': value});
+			var urlIsObject = typeof value === 'object' ? true : false;
+			
+			/*if(urlIsObject){
+				value = JSON.stringify(value);
+			}*/
+			
+			normData.gitBrowser.push(
+				{id: count, 'title': key, 'url': value, 'urlIsObject': urlIsObject}
+			);
 			count++;
 		});
 

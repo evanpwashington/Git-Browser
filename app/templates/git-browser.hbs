@@ -2,17 +2,18 @@
 	GitHub Browser
 	<span id="remainingReq">
 		Remaining Requests
-		<span class="badge badge-error">60</span>
+		<span class="badge badge-error">{{model.metaData.rateLimitRemaining}}</span>
 	</span>
 </div>
 <div id="content">
 	<div class="input-group">
-		<input class="form-control" placeholder="" type="text">
-		<span class="input-group-addon" id="reqSubmit">Request</span>
+		{{input type="text" valueBinding="requestUrl" class="form-control" placeholder="" }}	
+		<span {{action "makeRequest" on="click"}} class="input-group-addon" id="reqSubmit">Request</span>
 	</div>
 	{{#each item in model}}
 		<div class="title">{{item.formattedTitle}}</div>
-		<div class="link">{{{item.formattedUrl}}}</div>
+			<div class="link" {{action "copyUrl" item on="click"}}>{{{item.formattedUrl}}}</div>
+
 	{{/each}}
 </div>
 {{outlet}}

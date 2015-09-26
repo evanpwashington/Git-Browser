@@ -100,6 +100,12 @@ body * { box-sizing: border-box; }
 	vertical-align: middle;
 	display: table-cell;
 	border-radius: 0 4px 4px 0;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .input-group-addon:hover { cursor: pointer; }
