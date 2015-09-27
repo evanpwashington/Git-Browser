@@ -4,7 +4,7 @@ import DS from 'ember-data';
 var GitBrowser = DS.Model.extend({
 	title			: DS.attr('string'),
 	url				: DS.attr('string'),
-	urlIsObject		: DS.attr('boolean'),
+	isSubObject		: DS.attr('boolean'),
 	
 	//replace spaces with underscore and initial caps for title
 	formattedTitle	: function(){
@@ -26,7 +26,7 @@ var GitBrowser = DS.Model.extend({
 			newUrl 	= url,
 			params 	= url.match(/{(.*?)}/g);
 
-		if(params){
+		if(params && url.indexOf('http') === 0){
 			Ember.$.each(params, function(index, item){
 				var color = "#" + Math.random().toString(16).slice(2, 8);
 				
@@ -35,7 +35,12 @@ var GitBrowser = DS.Model.extend({
 		}
 		
 		return newUrl;
-	}.property('url')
+	}.property('url'),
+	
+	//add class property if isSubObject
+	subObjectClass	: function(){
+		return this.get('isSubObject') ? 'subObject' : '';
+	}.property('isSubObject')
 });
 
 export default GitBrowser;

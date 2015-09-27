@@ -9,16 +9,19 @@ var GitBrowser = Ember.ObjectController.extend({
 			this.send('updateData');
 		},
 		copyUrl		:function(item){
-			this.set('requestUrl', item.get('url'));
+			if(item.get('url').indexOf('http') === 0){
+				this.set('requestUrl', item.get('url'));
+			}
 		}
 	},
 	init: function() {
 		var host = this.store.adapterFor('GitBrowser').get('host');
-				console.log('meta', this.store.metadataFor('GitBrowser'));
-				this.set('requestUrl', host);    
-		}
+
+		this.set('requestUrl', host);    
+	},
+	getRateLimit: function(){
+		return this.store.metadataFor('GitBrowser').rateLimitRemaining;
+	}.property()
 });
 
 export default GitBrowser;
-
-//this.store.adapterFor('application').get('host')

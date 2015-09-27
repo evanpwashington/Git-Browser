@@ -15,6 +15,7 @@ body * { box-sizing: border-box; }
 	display: inline-block;
 	height: 40px;
 	padding: 0 15px;
+	font-size: 14px;
 	float: right;
 }
 
@@ -23,8 +24,14 @@ body * { box-sizing: border-box; }
 .title { color: #999; }
 
 .link {
-	margin-bottom: 15px;
+	padding-bottom: 15px;
 	font-size: 30px
+}
+
+.subObject {
+	background: rgb(237, 237, 237) none repeat scroll 0% 0%;
+	margin-left: 25px;
+	padding: 5px 15px;
 }
 
 .badge {

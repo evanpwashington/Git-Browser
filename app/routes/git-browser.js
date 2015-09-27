@@ -9,6 +9,7 @@ export default Ember.Route.extend({
 	actions: {
 		//reload router
 		updateData: function(){
+			this.store.unloadAll('GitBrowser');
 			this.refresh();
 		}
 	}

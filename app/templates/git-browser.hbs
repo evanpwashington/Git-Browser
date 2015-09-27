@@ -2,7 +2,7 @@
 	GitHub Browser
 	<span id="remainingReq">
 		Remaining Requests
-		<span class="badge badge-error">{{model.metaData.rateLimitRemaining}}</span>
+		<span class="badge badge-error">{{getRateLimit}}</span>
 	</span>
 </div>
 <div id="content">
@@ -11,9 +11,10 @@
 		<span {{action "makeRequest" on="click"}} class="input-group-addon" id="reqSubmit">Request</span>
 	</div>
 	{{#each item in model}}
-		<div class="title">{{item.formattedTitle}}</div>
-			<div class="link" {{action "copyUrl" item on="click"}}>{{{item.formattedUrl}}}</div>
-
+		<div class="title {{item.subObjectClass}}">{{item.formattedTitle}}</div>
+		<div class="link {{item.subObjectClass}}" {{action "copyUrl" item on="click"}}>{{{item.formattedUrl}}}</div>
+		
 	{{/each}}
 </div>
+
 {{outlet}}

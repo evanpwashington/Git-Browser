@@ -8,16 +8,33 @@ var GitBrowser = DS.RESTSerializer.extend({
 			normData 	= {"gitBrowser": []};
 
 		Ember.$.each(type, function(key, value){
+			if(value === null){
+				value = "N/A";
+			}
+			
 			var urlIsObject = typeof value === 'object' ? true : false;
-			
-			/*if(urlIsObject){
-				value = JSON.stringify(value);
-			}*/
-			
-			normData.gitBrowser.push(
-				{id: count, 'title': key, 'url': value, 'urlIsObject': urlIsObject}
-			);
+				
+			normData.gitBrowser.push({
+					'id': count, 
+					'title': key, 
+					'url': urlIsObject ? '' : value, 
+					'isSubObject': false
+			});
 			count++;
+			
+			if(urlIsObject){
+				Ember.$.each(value, function(subKey, subValue){
+					subValue = (typeof subValue !== 'object') ? subValue : 'Item is a sub-object';
+
+					normData.gitBrowser.push({
+						'id': count, 
+						'title': subKey, 
+						'url': subValue, 
+						'isSubObject': true
+					});
+					count++;
+				});
+			}
 		});
 
 		return normData;
