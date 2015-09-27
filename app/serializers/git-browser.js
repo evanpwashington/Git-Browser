@@ -3,11 +3,20 @@ import DS from 'ember-data';
 
 var GitBrowser = DS.RESTSerializer.extend({
 	//necessary to convert data from api to ember-friendly object
-	normalizePayload: function(type, payload) {
+	normalizePayload: function(payload) {
 		var count 		= 0,
 			normData 	= {"gitBrowser": []};
 
-		Ember.$.each(type, function(key, value){
+		if(!payload.lenth){
+			normData.gitBrowser.push({
+					'id': 1, 
+					'title': '', 
+					'url': 'Nothing to see here, folks.', 
+					'isSubObject': false
+			});
+		}
+		
+		Ember.$.each(payload, function(key, value){
 			if(value === null){
 				value = "N/A";
 			}
